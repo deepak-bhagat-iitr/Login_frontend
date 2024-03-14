@@ -14,7 +14,7 @@ function Login() {
             alert("invalid");
             return;
         }
-        await axios.post("http://localhost:5000/signup", {
+        await axios.post("https://login-backend-qwls.onrender.com/signup", {
             email: email,
             password: password
         })
@@ -51,9 +51,6 @@ function Login() {
             </form>
 
             <p>Already have an account?<Link class="login-link" to="/">Login Page</Link></p>
-
-
-
         </div>
     )
 }

@@ -4,37 +4,37 @@ import { useNavigate, Link } from "react-router-dom"
 
 function Login() {
 
-    const history=useNavigate();
+    const history = useNavigate();
 
-    const [email,setEmail]=useState('')
-    const [password,setPassword]=useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
-    async function submit(e){
+    async function submit(e) {
         e.preventDefault();
 
-        try{
+        try {
 
-            axios.post("http://localhost:5000/",{
-                email:email,
-                password:password
+            axios.post("https://login-backend-qwls.onrender.com/", {
+                email: email,
+                password: password
 
             })
-            .then(res=>{
-                console.log(res)
-                if(res.data=="exist"){
-                    history("/home",{state:{email:email}})
-                }
-                else if(res.data=="notexist"){
-                    alert("Invalid")
-                }
-            })
-            .catch(e=>{
-                alert("Error")
-                console.log(e);
-            })
+                .then(res => {
+                    console.log(res)
+                    if (res.data == "exist") {
+                        history("/home", { state: { email: email } })
+                    }
+                    else if (res.data == "notexist") {
+                        alert("Invalid")
+                    }
+                })
+                .catch(e => {
+                    alert("Error")
+                    console.log(e);
+                })
 
         }
-        catch(e){
+        catch (e) {
             console.log(e);
 
         }
@@ -47,8 +47,8 @@ function Login() {
             <h1>Login</h1>
 
             <form action="POST">
-                <input type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" required/>
-                <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" required/>
+                <input type="email" value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" required />
+                <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" required />
                 <input type="submit" onClick={submit} />
 
             </form>
